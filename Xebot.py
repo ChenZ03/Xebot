@@ -93,7 +93,7 @@ async def flip(ctx):
 async def game(ctx):
     if ctx.author == bot.user:
         return
-    games = ['Dota 2', 'Brawlhalla', 'Fortnite', 'CSGO', 'Mobile Legends']
+    games = ['Dota 2', 'Brawlhalla', 'Fortnite', 'CSGO', 'Mobile Legends', 'Minecraft']
     await ctx.send(f' Play {random.choice(games)}')
 
 
@@ -165,16 +165,8 @@ class Music(commands.Cog):
 
     @commands.command()
     async def play(self, ctx, *, url):
-        """
-
         async with ctx.typing():
             player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=True)
-            ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
-
-        await ctx.send('Now playing: {}'.format(player.title))
-        """
-        async with ctx.typing():
-            player = await YTDLSource.from_url(url, loop=self.bot.loop)
             ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
 
         await ctx.send('Now playing: {}'.format(player.title))
@@ -188,6 +180,14 @@ class Music(commands.Cog):
 
         ctx.voice_client.source.volume = volume / 100
         await ctx.send("Changed volume to {}%".format(volume))
+
+    @commands.command()
+    async def download(self, ctx, *, url):
+        async with ctx.typing():
+            player = await YTDLSource.from_url(url, loop=self.bot.loop)
+            ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+
+        await ctx.send('Now playing: {}'.format(player.title))
 
     @commands.command()
     async def pause(self, ctx):
@@ -208,12 +208,12 @@ class Music(commands.Cog):
     @commands.command()
     async def disconnect(self, ctx):
         """Stops and disconnects the bot from voice"""
-        await ctx.voice_client.stop()
         await ctx.voice_client.disconnect()
         await ctx.send(f'Disconnected')
 
     @play.before_invoke
     @local.before_invoke
+    @download.before_invoke
     async def ensure_voice(self, ctx):
         if ctx.voice_client is None:
             if ctx.author.voice:
@@ -227,5 +227,5 @@ class Music(commands.Cog):
 
 bot.add_cog(Music(bot))
 
-bot.run('Njk3MDc4NjkwMTM5MzQwOTAw.XoyDXg._XTmppieKDpXkq17h6gvXh-jwvU')
+bot.run('Njk3MDc4NjkwMTM5MzQwOTAw.Xo1H2w.RdzZzklUNCBxJcA9Rca07sIam8k')
 
