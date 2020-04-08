@@ -1,7 +1,0 @@
-git+https://github.com/Rapptz/discord.py
-PyNaCl
-dnspython
-async-timeout
-youtube_dl
-discord
-asyncio
