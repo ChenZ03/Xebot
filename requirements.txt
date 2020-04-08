@@ -5,3 +5,4 @@ async-timeout
 youtube_dl
 discord
 asyncio
+ffmpeg

@@ -206,7 +206,7 @@ class Music(commands.Cog):
             await ctx.send("Resumed")
 
     @commands.command()
-    async def disconnect(self, ctx):
+    async def dis(self, ctx):
         """Stops and disconnects the bot from voice"""
         await ctx.voice_client.disconnect()
         await ctx.send(f'Disconnected')
