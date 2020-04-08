@@ -144,6 +144,9 @@ class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    if not discord.opus.is_loaded():
+        discord.opus.load_opus('libopus.so')
+
     @commands.command()
     async def join(self, ctx, *, channel: discord.VoiceChannel):
         """Joins a voice channel"""
