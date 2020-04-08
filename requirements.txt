@@ -1,4 +1,5 @@
 git+https://github.com/Rapptz/discord.py
+git+https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
 PyNaCl
 dnspython
 async-timeout
