@@ -1,1 +1,1 @@
-worker: python Xebox.py
+worker: python Xebot.py
