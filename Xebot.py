@@ -264,10 +264,9 @@ class Music(commands.Cog):
         self.bot = bot
         self.players = {}
 
-
     if not discord.opus.is_loaded():
         discord.opus.load_opus('libopus.so')
-        
+
 
     async def cleanup(self, guild):
         try:
@@ -307,6 +306,7 @@ class Music(commands.Cog):
         except KeyError:
             player = MusicPlayer(ctx)
             self.players[ctx.guild.id] = player
+
 
         return player
 
@@ -364,7 +364,7 @@ class Music(commands.Cog):
 
         # If download is False, source will be a dict which will be used later to regather the stream.
         # If download is True, source will be a discord.FFmpegPCMAudio with a VolumeTransformer.
-        source = await YTDLSource.create_source(ctx, search, loop=self.bot.loop, download=False)
+        source = await YTDLSource.create_source(ctx, search, loop=self.bot.loop, download=True)
 
         await player.queue.put(source)
 
