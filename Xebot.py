@@ -12,6 +12,9 @@ import traceback
 from async_timeout import timeout
 from functools import partial
 from youtube_dl import YoutubeDL
+import lyricsgenius
+
+genius = lyricsgenius.Genius("VUk9JQFXKrFuQQjLO02icVMogONNzNiS7sjZjn2LnUOTq_HJDcPvt_w5XwGc5K4C")
 
 bot = commands.Bot(command_prefix="=")
 youtube_dl.utils.bug_reports_message = lambda: ''
@@ -487,6 +490,30 @@ class Music(commands.Cog):
             return await ctx.send('I am not playing anything!', delete_after=20)
 
         await self.cleanup(ctx.guild)
+
+    @commands.command()
+    async def lyrics(self, ctx):
+        vc = ctx.voice_client
+        songs = genius.search_song(vc.source.title)
+
+        if not vc or not vc.is_connected():
+            return await ctx.send('I am not connected to voice!', delete_after=20)
+
+        player = self.get_player(ctx)
+        if not player.current:
+            return await ctx.send('I am not playing anything!')
+
+        try:
+            # Remove our previous now_playing message.
+            await player.np.delete()
+        except discord.HTTPException:
+            pass
+        
+
+        embed = discord.Embed(title=f'Lyrics for - {vc.source.title}', description=songs)
+
+        await ctx.send(embed=embed)
+        
 
 
 bot.add_cog(Music(bot))
