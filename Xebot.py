@@ -264,9 +264,10 @@ class Music(commands.Cog):
         self.bot = bot
         self.players = {}
 
+    """
     if not discord.opus.is_loaded():
         discord.opus.load_opus('libopus.so')
-
+        """
 
     async def cleanup(self, guild):
         try:
@@ -490,5 +491,5 @@ class Music(commands.Cog):
 
 bot.add_cog(Music(bot))
 
-bot.run('Njk3MDc4NjkwMTM5MzQwOTAw.Xo1H2w.RdzZzklUNCBxJcA9Rca07sIam8k')
+bot.run('Njk3MDc4NjkwMTM5MzQwOTAw.XoyDHg.r2FY67G8GJIK89PWWljjg0qjZSg')
 
