@@ -492,27 +492,17 @@ class Music(commands.Cog):
         await self.cleanup(ctx.guild)
 
     @commands.command()
-    async def lyrics(self, ctx):
+    async def lyrics(self, ctx, *, title):
         vc = ctx.voice_client
-        songs = genius.search_song(vc.source.title)
-
-        if not vc or not vc.is_connected():
-            return await ctx.send('I am not connected to voice!', delete_after=20)
-
-        player = self.get_player(ctx)
-        if not player.current:
-            return await ctx.send('I am not playing anything!')
-
-        try:
-            # Remove our previous now_playing message.
-            await player.np.delete()
-        except discord.HTTPException:
-            pass
-        
-
-        # embed = discord.Embed(title=f'Lyrics for - {vc.source.title}', description=songs)
-
-        await ctx.send(songs.lyrics)
+        await ctx.trigger_typing()
+        song = genius.search_song(title)
+        if len(song.lyrics) > 2000:
+            lyrics = song.lyrics
+            half = len(song.lyrics) // 2
+            await ctx.send(lyrics[:half])
+            await ctx.send(lyrics[half+1:])
+        else:
+            await ctx.send(song.lyrics)
         
 
 
