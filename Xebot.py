@@ -512,7 +512,7 @@ class Music(commands.Cog):
 
         # embed = discord.Embed(title=f'Lyrics for - {vc.source.title}', description=songs)
 
-        await ctx.send(songs)
+        await ctx.send(songs.lyrics)
         
 
 
