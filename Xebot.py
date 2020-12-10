@@ -14,10 +14,12 @@ from functools import partial
 from youtube_dl import YoutubeDL
 import lyricsgenius
 
+
 genius = lyricsgenius.Genius("VUk9JQFXKrFuQQjLO02icVMogONNzNiS7sjZjn2LnUOTq_HJDcPvt_w5XwGc5K4C")
 
 bot = commands.Bot(command_prefix="=")
 youtube_dl.utils.bug_reports_message = lambda: ''
+
 
 
 @bot.event
@@ -104,6 +106,7 @@ async def game(ctx):
         return
     games = ['Dota 2', 'Brawlhalla', 'Fortnite', 'CSGO', 'Mobile Legends', 'Minecraft']
     await ctx.send(f' Play {random.choice(games)}')
+
 
 
 ytdlopts = {

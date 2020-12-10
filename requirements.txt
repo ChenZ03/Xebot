@@ -7,3 +7,4 @@ youtube_dl
 discord
 asyncio
 ffmpeg
+discord-timers
