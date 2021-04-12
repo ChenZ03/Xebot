@@ -509,5 +509,5 @@ class Music(commands.Cog):
 
 bot.add_cog(Music(bot))
 
-bot.run('Njk3MDc4NjkwMTM5MzQwOTAw.XoyDHg.r2FY67G8GJIK89PWWljjg0qjZSg')
+bot.run('ef6793b7ec8eadf3d395511fe0b31bae5de9039147cff13e22a04768cd565fca')
 
