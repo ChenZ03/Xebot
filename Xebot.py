@@ -44,23 +44,6 @@ async def on_member_leave(member):
 
 
 @bot.command()
-async def function(ctx):
-    if ctx.author == bot.user:
-        return
-    await ctx.send(f'greet - Greet user\n'
-                    f'ping - Check ping\n'
-                    f'clear - Clear last 6 msg\n'
-                   f'roll - Roll 1-10\n'
-                   f'flip - Flip a coin\n'
-                   f'game - Choose a game to ply\n'
-                   f'join [channel name] - Join a channel\n'
-                   f'stop - stop the music and disconnect\n'
-                   f'play [youtube link] - plays a youtube audio\n'
-                   f'local [play local file] - plays audio from local directory\n'
-                   f'pause - pause audio\n'
-                   f'resume - Resume audio\n'
-    )
-
 
 @bot.command()
 async def greet(ctx):
@@ -87,10 +70,25 @@ async def clear(ctx, amount=6):
 async def roll(ctx):
     if ctx.author == bot.user:
         return
-    numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
-    await ctx.send(f'Roll 1-10 : {random.choice(numbers)}')
+    num = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+    await ctx.send(f'Roll 1-10 : {random.choice(num)}')
 
+@bot.command()
+async def food(ctx):
+    if ctx.author == bot.user:
+        return
+        food = ["Mamu", "Economy Rice", "Jetty Food Court", "Thai Restaurant", "Oppa",
+"Noordin",
+"Under Big Tree",
+"Wan Tan Mee",
+"Mr. Flacko",
+"Le Bread Days",
+"Sim Nam Huat"
+]
+   
+ 
+    await ctx.send(f'Lets eat {random.choice(food)}')
 
 @bot.command()
 async def flip(ctx):
